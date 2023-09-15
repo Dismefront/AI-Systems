@@ -47,6 +47,11 @@ achievements(natus_vincere, ['Major Champions', 'ESL Pro League Winners',
                             'BLAST Pro Series Champions', 'IEM Champions']).
 
 
+
+
+
+% Rule for a strong region team
+% if there are at least 3 teams in the same region, then it is considered to be strong
 strong_region(Region) :-
     team(Team1),
     team(Team2),
@@ -59,22 +64,26 @@ strong_region(Region) :-
     country(Team3, Region).
 
 
+% Rule for teams that have a major trophy, but don't have IEM trophy
 major_champs_not_iem_champs(Team) :-
     achievements(Team, Achievements),
     member('Major Champions', Achievements),
     not(member('IEM Champions', Achievements)).
 
 
+% Rule for tier-1 that have Major and EPL tropies
 top_tier(Team) :-
     achievements(Team, Achievements),
     member('Major Champions', Achievements),
     member('ESL Pro League Winners', Achievements).
 
 
+% Check if a team from some region
 team_from_country(Country, Team) :-
     country(Team, Country).
 
 
+% Check if a team has all the achievements
 diverse_achievements(Team) :-
     achievements(Team, Achievements),
     member('Major Champions', Achievements),
