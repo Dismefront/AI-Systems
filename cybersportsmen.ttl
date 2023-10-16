@@ -1,0 +1,315 @@
+@prefix : <http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/> .
+
+<http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2#owned
+:owned rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf owl:topObjectProperty ;
+       owl:inverseOf :hasTrophyOf ;
+       rdfs:domain :Achievements ;
+       rdfs:range :Team ;
+       owl:propertyDisjointWith :hasTrophyOf .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/beMemberOf
+:beMemberOf rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            owl:inverseOf :includes ;
+            rdfs:domain :Team ;
+            rdfs:range :Country ;
+            owl:propertyDisjointWith :includes .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/hasTrophyOf
+:hasTrophyOf rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdfs:domain :Team ;
+             rdfs:range :Achievements .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/includes
+:includes rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdfs:domain :Country ;
+          rdfs:range :Team .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/region
+:region rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/strong_tournament
+:strong_tournament rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf :trophy .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/team
+:team rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/trophy
+:trophy rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/weak_tournament
+:weak_tournament rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :trophy .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2#Good
+:Good rdf:type owl:Class ;
+      owl:equivalentClass [ rdf:type owl:Restriction ;
+                            owl:onProperty :owned ;
+                            owl:hasValue :astralis
+                          ] ;
+      rdfs:subClassOf :Achievements .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2#withIEM
+:withIEM rdf:type owl:Class ;
+         owl:equivalentClass [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasTrophyOf ;
+                               owl:hasValue :IEM
+                             ] ;
+         rdfs:subClassOf :Team .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2#withMajor
+:withMajor rdf:type owl:Class ;
+           owl:equivalentClass [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasTrophyOf ;
+                                 owl:hasValue :Major
+                               ] ;
+           rdfs:subClassOf :Team .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/Achievements
+:Achievements rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/Country
+:Country rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/Strong
+:Strong rdf:type owl:Class ;
+        owl:equivalentClass [ rdf:type owl:Restriction ;
+                              owl:onProperty :includes ;
+                              owl:hasValue :natus_vincere
+                            ] ;
+        rdfs:subClassOf :Country .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/Team
+:Team rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/Blast_Pro_Series
+:Blast_Pro_Series rdf:type owl:NamedIndividual ;
+                  :weak_tournament "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/Dreamhack_masters
+:Dreamhack_masters rdf:type owl:NamedIndividual ;
+                   :weak_tournament "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/ESL_PRO_LEAGUE
+:ESL_PRO_LEAGUE rdf:type owl:NamedIndividual ;
+                :strong_tournament "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/IEM
+:IEM rdf:type owl:NamedIndividual ;
+     :weak_tournament "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/Major
+:Major rdf:type owl:NamedIndividual ;
+       :strong_tournament "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/asia
+:asia rdf:type owl:NamedIndividual ,
+               :Country ;
+      :region "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/astralis
+:astralis rdf:type owl:NamedIndividual ;
+          :beMemberOf :europe ;
+          :hasTrophyOf :ESL_PRO_LEAGUE ,
+                       :Major ;
+          :team "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/australia
+:australia rdf:type owl:NamedIndividual ;
+           :region "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/cis
+:cis rdf:type owl:NamedIndividual ;
+     :region "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/copenhagen_wolves
+:copenhagen_wolves rdf:type owl:NamedIndividual ;
+                   :beMemberOf :usa ;
+                   :hasTrophyOf :Dreamhack_masters ,
+                                :ESL_PRO_LEAGUE ,
+                                :IEM ;
+                   :team "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/eg
+:eg rdf:type owl:NamedIndividual ;
+    :beMemberOf :usa ;
+    :hasTrophyOf :ESL_PRO_LEAGUE ,
+                 :IEM ,
+                 :Major ;
+    :team "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/ence
+:ence rdf:type owl:NamedIndividual ;
+      :beMemberOf :europe ;
+      :hasTrophyOf :IEM ;
+      :team "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/europe
+:europe rdf:type owl:NamedIndividual ;
+        :region "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/faze_clan
+:faze_clan rdf:type owl:NamedIndividual ;
+           :beMemberOf :europe ;
+           :team "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/flashpoint
+:flashpoint rdf:type owl:NamedIndividual ;
+            :beMemberOf :europe ;
+            :hasTrophyOf :Blast_Pro_Series ,
+                         :Dreamhack_masters ,
+                         :ESL_PRO_LEAGUE ;
+            :team "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/fnatic
+:fnatic rdf:type owl:NamedIndividual ;
+        :beMemberOf :europe ;
+        :team "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/g2_esports
+:g2_esports rdf:type owl:NamedIndividual ;
+            :beMemberOf :europe ;
+            :team "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/liquid
+:liquid rdf:type owl:NamedIndividual ;
+        :beMemberOf :usa ;
+        :hasTrophyOf :ESL_PRO_LEAGUE ,
+                     :IEM ;
+        :team "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/mousesports
+:mousesports rdf:type owl:NamedIndividual ;
+             :beMemberOf :europe ;
+             :team "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/natus_vincere
+:natus_vincere rdf:type owl:NamedIndividual ;
+               :beMemberOf :cis ;
+               :hasTrophyOf :Blast_Pro_Series ,
+                            :Dreamhack_masters ,
+                            :ESL_PRO_LEAGUE ,
+                            :IEM ,
+                            :Major ;
+               :team "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/nip
+:nip rdf:type owl:NamedIndividual ;
+     :beMemberOf :europe ;
+     :hasTrophyOf :ESL_PRO_LEAGUE ,
+                  :IEM ,
+                  :Major ;
+     :team "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/og
+:og rdf:type owl:NamedIndividual ;
+    :beMemberOf :europe ;
+    :team "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/renegades
+:renegades rdf:type owl:NamedIndividual ;
+           :beMemberOf :australia ;
+           :hasTrophyOf :IEM ;
+           :team "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/team_spirit
+:team_spirit rdf:type owl:NamedIndividual ;
+             :beMemberOf :cis ;
+             :hasTrophyOf :Major ;
+             :team "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/usa
+:usa rdf:type owl:NamedIndividual ;
+     :region "true"^^xsd:boolean .
+
+
+###  http://www.semanticweb.org/dismefront/ontologies/2023/8/lab2/virtus_pro
+:virtus_pro rdf:type owl:NamedIndividual ;
+            :beMemberOf :australia ;
+            :team "true"^^xsd:boolean .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointProperties ;
+  owl:members ( :region
+                :team
+                :trophy
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
